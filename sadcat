@@ -1,0 +1,181 @@
+#!/usr/bin/env python
+
+import sys
+import re
+import toml
+
+def parse_config(conffile):
+    """"
+    open and read config file
+    :conffile: file path as str
+    :returns: dict
+    """
+    with open(conffile) as conffile:
+        config = toml.loads(conffile.read())
+
+    return config
+
+def generate_range(start, end):
+    """
+    Convert [01-09] or [5-9] to a list() of values like
+    [ '01', '02', '03' ] or so. This list is used for the Host
+    section loop afterwards
+    :start: str
+    :end: str
+    """
+
+    # if it seems to be a single host entry,
+    # skip all this
+    if start is None and end is None:
+        return [""]
+
+    # convert str to int
+    s = int(start)
+    e = int(end)
+
+    # counting var
+    c = s
+
+    # get a list
+    nlist = []
+
+    # loop in range
+    while c <= e:
+
+        # 01
+        if start.startswith("0"):
+            nlist.append("%02d" % c)
+        # 001
+        elif start.startswith("00"):
+            nlist.append("%03d" % c)
+        # 1
+        else:
+            nlist.append("%01d" % c)
+
+        c = c + 1
+
+    return nlist
+
+def delkey_if_exists(sec, key):
+    """
+    Just a simple wrapper to delete stuff from
+    a dictionary
+    :sec: dict
+    :key: str
+    :returns: dict
+    """
+    try:
+        del sec[key]
+    except KeyError:
+        pass
+    return sec
+
+
+def ssh_block(nlist, start, end, section, template):
+    for i in nlist:
+
+        # working copy of the template object
+        # to be able to remove keys that are in host section
+        templ = template
+
+        # build hostname and delete
+        hostname = "%s%s%s" % (start, i, end)
+
+        # build aliases and delete
+        try:
+            alias = section["alias"] + str(i)
+        except KeyError:
+            alias = ""
+
+
+        # create hostname and host section
+        print("Host %s %s" % (hostname,alias))
+        print(" hostname %s" % hostname)
+
+        # delete all keys from templ that are set in host
+        # this effect is used to overwrite variables from templ
+        # in host
+        for key in section:
+            templ = delkey_if_exists(templ, key)
+
+        section = delkey_if_exists(section, "template")
+        section = delkey_if_exists(section, "alias")
+        section = delkey_if_exists(section, "hostname")
+
+        # apply all templ vars
+        for k, v in templ.iteritems():
+            print(" %s %s" % (k,v))
+
+        # apply all left host section wars
+        for k, v in section.iteritems():
+            print(" %s %s" % (k,v))
+
+        print("")
+
+def get_template_for_host(section):
+    """
+    get template dict object from host section
+    """
+    try:
+        template = section["template"]
+        try:
+            template = config["templates"][template]
+        except KeyError:
+            print("ERROR: Template %s does not exist!" % template)
+            sys.exit(1)
+    except KeyError:
+        template = {}
+        pass
+
+    return template
+
+def parse_hostname_exp(hostgroup):
+    """
+    Split hostname from foo[01-03]bar into
+    01, 02, foo, bar.
+    Bascially a very naive parser of regex ranges.
+    """
+
+    f = re.findall(r'(.*)\[(\d+)-(\d+)\](.*)', hostgroup["hostname"])
+
+    try:
+        rstart = f[0][1]
+        rend = f[0][2]
+        hstart = f[0][0]
+        hend = f[0][3]
+    except:
+        # Seems to be a single host
+        rstart = None
+        rend = None
+        hstart = hostgroup["hostname"]
+        hend = ""
+
+    return rstart, rend, hstart, hend
+
+def generate_hosts(config):
+
+    hosts = config["hosts"]
+
+    for hostgroup in hosts:
+
+        # new dict for this host section
+        section = config["hosts"][hostgroup]
+
+        # Comment for ssh config
+        print("# %s\n" % hostgroup)
+
+        # parse hostname expression
+        rstart, rend, hstart, hend = parse_hostname_exp(section)
+
+        # generate range
+        nlist = generate_range(rstart, rend)
+
+        # get template referenced in this host entry
+        template = get_template_for_host(section)
+
+        # fill all gathered informations into block generator
+        ssh_block(nlist, hstart, hend, section, template)
+
+if __name__ == "__main__":
+    config = parse_config("conf.toml")
+    generate_hosts(config)

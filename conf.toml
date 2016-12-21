@@ -1,0 +1,48 @@
+[hosts]
+
+[hosts.nyc-dpzzt]
+hostname = "nyc-dpzzt[01-03]"
+
+[hosts.nyc-apdpzt]
+hostname = "nyc-apdvzt[05-09]"
+alias = "app"
+
+[hosts.thehundrets]
+hostname = "fra1024mfoo[99-103]"
+alias = "mfoo"
+
+[hosts.thethousands]
+hostname = "fra1024mfoo[0997-1001]"
+
+[hosts.theleadzerohundreds]
+hostname = "fra1024mfoo[097-101]"
+template = "root"
+
+[hosts.twoleadingzeros]
+hostname = "fra1024mfoo[001-005]"
+template = "root"
+user = "noqqe"
+
+[hosts.trailingchars]
+hostname = "fra1024mfoo[55-57]LOol"
+
+[hosts.ohneleadingzeros]
+hostname = "nyc-dpzzt[5-9]"
+template = "companyproxy"
+
+[hosts.singlehost]
+hostname = "nyc-dzzpt77"
+user = "weltschmerz"
+
+[templates]
+
+[templates.root]
+User = "root"
+Port = "22"
+
+[templates.companyproxy]
+User = "root"
+Port = "22"
+KexAlgorithms = "curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1"
+
+
