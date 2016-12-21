@@ -29,6 +29,7 @@ hostname = "fra1024mfoo[55-57]LOol"
 [hosts.ohneleadingzeros]
 hostname = "nyc-dpzzt[5-9]"
 template = "companyproxy"
+alias = [ "dypppt", "dzzzpt" ]
 
 [hosts.singlehost]
 hostname = "nyc-dzzpt77"
