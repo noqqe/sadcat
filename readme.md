@@ -74,6 +74,31 @@ those can be specified in `hosts` using a `toml` array if multiple or
 a string. Range numbers (if available) will be applied at the end. Thats
 just how i like it. Theres no deeper meaning.
 
+=======
+```
+[hosts.hostsaliases]
+hostname = "nyc-dpzzt[5-9]"
+template = "company"
+alias = [ "dypppt", "dzzzpt" ]
+```
+
+would result in
+
+```
+Host nyc-dpzzt5 dypppt5 dzzzpt5
+  hostname ...
+
+Host nyc-dpzzt6 dypppt6 dzzzpt6
+  hostname ...
+```
+
+but as said, `alias` can also be just a string
+
+```
+[hosts.hostsaliases]
+hostname = "nyc-dpzzt[5-9]"
+alias = "dypppt"
+```
 
 #### single hosts
 
