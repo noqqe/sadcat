@@ -1,12 +1,13 @@
 # sadcat
 
 My ssh config is hell. Even if its not much, its hell. I have ~190 host
-entries which results in 1094(!) lines of sshconfig.
+entries which results in 1094(!) lines of sshconfig. Which I maintain
+manually. Man-u-a-ll-y!
 
 Why is that?
 
-I use a lot of aliases to remember all my hosts. A typical entry looked
-like
+I use a lot of aliases to remember all my hosts. Which is probably my fault
+but im used to it. A typical entry looked like
 
 ```
 Host nyc-cexapsdrap21.company.com drap21 pdrap21
@@ -17,9 +18,73 @@ Host nyc-cexapsdrap21.company.com drap21 pdrap21
 ```
 
 You can do a lot of stuff with wildcards in sshconfig. What you cant do is
-having dynamic aliases (at least what i know). This would require
+having dynamic aliases (at least what I know). This would require
 a templating like option.
 
 And thats why i wrote this tiny script.
 
+### install & usage
 
+as usual.
+
+    git clone https://github.com/noqqe/sadcat
+    pip install -r requirements.txt
+    ./sadcat conf.toml
+
+### config
+
+#### ranges
+
+A minimal config would look like this.
+
+``` toml
+[hosts]
+
+[hosts.nyc-dpzzt]
+hostname = "nyc-dpzzt[01-03]"
+```
+
+and `sadcat` generates 3 ssh entries for you called `nyc-dpzzt01`,
+`nyc-dpzzt02` and `nyc-dpzzt03`. Simple.
+
+#### templates
+
+To save more lines you can apply a template to a hosts group
+
+``` toml
+[hosts]
+
+[hosts.twoleadingzeros]
+hostname = "fra1024mfoo[001-005]"
+template = "fra1024"
+
+[templates]
+
+[templates.fra1024]
+user = "otheruser"
+port = "2202"
+```
+
+Of course, setting a variable in `hosts` will always overwrite those being
+set in `templates`.
+
+### aliases
+
+those can be specified in `hosts` using a `toml` array if multiple or
+a string. Range numbers (if available) will be applied at the end. Thats
+just how i like it. Theres no deeper meaning.
+
+#### single hosts
+
+As you might expected, if you dont have a `Range` defined in a hostname
+this entry will result in one single host.
+
+```
+[hosts.singlehost]
+hostname = "fra1024mfoo23"
+user = "foo"
+```
+
+### sadcat?
+
+I used a project name generator and liked it.

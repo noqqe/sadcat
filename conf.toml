@@ -44,6 +44,4 @@ Port = "22"
 [templates.companyproxy]
 User = "root"
 Port = "22"
-KexAlgorithms = "curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1"
-
 
