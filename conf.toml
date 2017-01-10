@@ -45,3 +45,24 @@ Port = "22"
 User = "root"
 Port = "22"
 
+[custom]
+
+hostsb = '''
+
+Host bar.foo
+  hostname bla
+  user foo
+
+Host foo.bar
+  hostname foo
+  user bar
+  port par
+'''
+
+strangehost = '''
+
+Host baz
+  hostname baz
+  port 666
+  user evil
+'''

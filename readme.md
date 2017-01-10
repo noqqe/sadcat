@@ -74,16 +74,49 @@ those can be specified in `hosts` using a `toml` array if multiple or
 a string. Range numbers (if available) will be applied at the end. Thats
 just how i like it. Theres no deeper meaning.
 
+
 #### single hosts
 
 As you might expected, if you dont have a `Range` defined in a hostname
 this entry will result in one single host.
 
-```
+``` toml
 [hosts.singlehost]
 hostname = "fra1024mfoo23"
 user = "foo"
 ```
+
+### custom
+
+If all that is still not enough flexibility, you can add custom snippets to
+your ssh config by defining multiline strings in the `[custom]` section
+with full hosts.
+
+``` toml
+[custom]
+
+hostsb = '''
+
+Host bar.foo
+  hostname bla
+  user foo
+
+Host foo.bar
+  hostname foo
+  user bar
+  port par
+'''
+
+strangehost = '''
+
+Host baz
+  hostname baz
+  port 666
+  user evil
+'''
+```
+
+For more detailed examples see `conf.toml` in this repo.
 
 ### sadcat?
 

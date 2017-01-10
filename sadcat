@@ -2,6 +2,7 @@
 
 import os
 import sys
+import textwrap
 import re
 import toml
 
@@ -188,12 +189,36 @@ def generate_hosts(config):
         # fill all gathered informations into block generator
         ssh_block(nlist, hstart, hend, section, template)
 
+def paste_appended_options(config):
+    """
+    Pasts appended ssh config parts from
+    ssh config if any configured
+    :returns: bool
+    """
+    try:
+        print("# Custom appended section\n")
+        for c in config["custom"].keys():
+            print("# " + c)
+
+            # this is a dirty hack for https://github.com/uiri/toml/issues/71
+            for line in config["custom"][c].split('\n'):
+                if "Host " in line:
+                    print(textwrap.dedent(line))
+                else:
+                    print("  " + textwrap.dedent(line))
+
+    except KeyError:
+        pass
+
+    return True
+
 if __name__ == "__main__":
 
     # help
     if len(sys.argv) <= 1:
         print("Usage: %s conf.toml" % sys.argv[0])
-        sys.exit(0)
+        sys.exit(1)
 
     config = parse_config(sys.argv[1])
     generate_hosts(config)
+    paste_appended_options(config)
