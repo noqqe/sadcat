@@ -227,7 +227,7 @@ def paste_appended_options(config):
 
     return True
 
-if __name__ == "__main__":
+def main():
 
     # help
     if len(sys.argv) <= 1:
@@ -237,3 +237,6 @@ if __name__ == "__main__":
     config = parse_config(sys.argv[1])
     generate_hosts(config)
     paste_appended_options(config)
+
+if __name__ == '__main__':
+    main()
