@@ -135,7 +135,7 @@ def ssh_block(nlist, start, end, section, template, defaults):
 
         print("")
 
-def get_template_for_host(section):
+def get_template_for_host(section, config):
     """
     get template dict object from host section
     """
@@ -194,7 +194,7 @@ def generate_hosts(config):
         nlist = generate_range(rstart, rend)
 
         # get template referenced in this host entry
-        template = get_template_for_host(section)
+        template = get_template_for_host(section, config)
 
         try:
             defaults = config["templates"]["default"]
