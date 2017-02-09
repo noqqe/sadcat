@@ -31,9 +31,18 @@ as usual.
 
 ::
 
-    git clone https://github.com/noqqe/sadcat
-    pip install -r requirements.txt
-    ./sadcat conf.toml
+    pip install sadcat
+    sadcat ~/.ssh/sadcat.toml
+
+Personally i use two aliases
+
+::
+
+    # set refresh alias
+    alias sshre="$SADCAT $HOME/.ssh/sadcat.toml > $HOME/.ssh/config"
+
+    # set edit alias
+    alias sshedit="$EDITOR $HOME/.ssh/sadcat.toml"
 
 config
 ~~~~~~
