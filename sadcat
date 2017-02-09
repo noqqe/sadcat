@@ -17,8 +17,13 @@ def parse_config(conffile):
         print("Error: config not found")
         sys.exit(1)
 
-    with open(conffile) as conffile:
-        config = toml.loads(conffile.read())
+    try:
+        with open(conffile) as conffile:
+            config = toml.loads(conffile.read())
+    except toml.TomlDecodeError as e:
+        print("Error: Invalid config.")
+        print("Error was: %s" % e)
+        sys.exit(1)
 
     return config
 
