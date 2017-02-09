@@ -83,7 +83,7 @@ def delkey_if_exists(sec, key):
     return sec
 
 
-def ssh_block(nlist, start, end, section, template):
+def ssh_block(nlist, start, end, section, template, defaults):
     for i in nlist:
 
         # working copy of the template object
@@ -118,6 +118,11 @@ def ssh_block(nlist, start, end, section, template):
 
         section = delkey_if_exists(section, "template")
         section = delkey_if_exists(section, "hostname")
+
+        # apply default vars
+        if defaults is not None:
+            for k, v in defaults.iteritems():
+                print(" %s %s" % (k,v))
 
         # apply all templ vars
         for k, v in templ.iteritems():
@@ -191,8 +196,13 @@ def generate_hosts(config):
         # get template referenced in this host entry
         template = get_template_for_host(section)
 
+        try:
+            defaults = config["templates"]["default"]
+        except KeyError:
+            defaults = None
+
         # fill all gathered informations into block generator
-        ssh_block(nlist, hstart, hend, section, template)
+        ssh_block(nlist, hstart, hend, section, template, defaults)
 
 def paste_appended_options(config):
     """

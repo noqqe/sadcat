@@ -68,6 +68,9 @@ port = "2202"
 Of course, setting a variable in `hosts` will always overwrite those being
 set in `templates`.
 
+There is a special template that is applied to every host if its configured
+called "default". (`[templates.default]`)
+
 ### aliases
 
 those can be specified in `hosts` using a `toml` array if multiple or
