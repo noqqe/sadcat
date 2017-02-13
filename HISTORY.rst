@@ -1,6 +1,15 @@
 Changelog
 =========
 
+v0.2.2 (2017-02-13)
+-------------------
+
+- Release: 0.2.2. [Florian Baumann]
+
+- Readme. [Florian Baumann]
+
+- Changelog: 0.2.1. [Florian Baumann]
+
 v0.2.1 (2017-02-13)
 -------------------
 
