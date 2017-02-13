@@ -1,6 +1,15 @@
 Changelog
 =========
 
+v0.2.3 (2017-02-13)
+-------------------
+
+- Release: 0.2.3. [Florian Baumann]
+
+- Satisfy pypi. [Florian Baumann]
+
+- Changelog: 0.2.2. [Florian Baumann]
+
 v0.2.2 (2017-02-13)
 -------------------
 
