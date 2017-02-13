@@ -45,7 +45,17 @@ setup(
     keywords='ssh config templating generator ssh_config toml',
     packages=find_packages(),
     zip_safe=True,
+
+    # dependencies
     install_requires=['toml'],
+
+    # extra_requires
+    extras_require={
+        'dev': [
+            'versionbump',
+            'gitchangelog'
+        ]
+    }
 
     entry_points={
         'console_scripts': [
