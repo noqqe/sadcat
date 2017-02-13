@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 if [[ $1 != "major" ]] && [[ $1 != "minor" ]] && [[ $1 != "patch" ]]; then
   echo wrong usage. use major/minor/patch as first argument
@@ -6,7 +7,7 @@ if [[ $1 != "major" ]] && [[ $1 != "minor" ]] && [[ $1 != "patch" ]]; then
 fi
 
 echo bump version
-bumpversion minor VERSION
+bumpversion --current-version $(cat VERSION) $1 VERSION
 
 v=$(cat VERSION)
 
