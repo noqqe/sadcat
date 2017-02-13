@@ -4,9 +4,17 @@ Changelog
 %%version%% (unreleased)
 ------------------------
 
+- Changelog: 0.2.0. [Florian Baumann]
+
+v0.2.0 (2017-02-13)
+-------------------
+
 - Release: 0.2.0. [Florian Baumann]
 
 - Changelog and dev requirements. [Florian Baumann]
+
+v0.1.0 (2017-02-09)
+-------------------
 
 - Release: 0.1.0. [Florian Baumann]
 
@@ -15,6 +23,9 @@ Changelog
 - Fix template handling. [Florian Baumann]
 
 - Ignore file. [Florian Baumann]
+
+v0.0.1 (2017-02-09)
+-------------------
 
 - Pipyfy. [Florian Baumann]
 
