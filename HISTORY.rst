@@ -1,8 +1,14 @@
 Changelog
 =========
 
-%%version%% (unreleased)
-------------------------
+v0.2.1 (2017-02-13)
+-------------------
+
+- Release: 0.2.1. [Florian Baumann]
+
+- Fix. [Florian Baumann]
+
+- Changelog: 0.2.0. [Florian Baumann]
 
 - Changelog: 0.2.0. [Florian Baumann]
 
