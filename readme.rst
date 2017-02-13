@@ -94,8 +94,6 @@ those can be specified in ``hosts`` using a ``toml`` array if multiple
 or a string. Range numbers (if available) will be applied at the end.
 Thats just how i like it. Theres no deeper meaning.
 
-=======
-
 ::
 
     [hosts.hostsaliases]
