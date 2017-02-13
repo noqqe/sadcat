@@ -1,6 +1,15 @@
 Changelog
 =========
 
+v0.2.4 (2017-02-13)
+-------------------
+
+- Release: 0.2.4. [Florian Baumann]
+
+- Setup fixes. [Florian Baumann]
+
+- Changelog: 0.2.3. [Florian Baumann]
+
 v0.2.3 (2017-02-13)
 -------------------
 
