@@ -2,6 +2,18 @@ Changelog
 =========
 
 
+v0.4.5 (2017-02-16)
+-------------------
+- Release: 0.4.5. [Florian Baumann]
+- Fix release scripts. [Florian Baumann]
+- Fix. [Florian Baumann]
+- Fix release scripts. [Florian Baumann]
+- Fix release scripts. [Florian Baumann]
+- Fix release scripts. [Florian Baumann]
+- Improved readme. [Florian Baumann]
+- Changelog: 0.4.1. [Florian Baumann]
+
+
 v0.4.1 (2017-02-16)
 -------------------
 - Release: 0.4.1. [Florian Baumann]
