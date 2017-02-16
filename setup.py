@@ -11,7 +11,7 @@ def read_from_file(path):
         with open(path,"rb","utf-8") as input:
             return input.read()
 
-version = "0.4.5"
+version = "0.4.6"
 
 setup(
     name='sadcat',
