@@ -6,10 +6,16 @@ if [[ $1 != "major" ]] && [[ $1 != "minor" ]] && [[ $1 != "patch" ]]; then
   exit 1
 fi
 
-echo bump version
-bumpversion --current-version $(cat VERSION) $1 VERSION
+function get_cur_vers {
+  grep '^version = "' setup.py | awk -F\" '{print $2}'
+}
 
-v=$(cat VERSION)
+echo bump version
+bumpversion --current-version $(get_cur_vers) $1 setup.py
+
+v=$(get_cur_vers)
+
+exit 1
 
 echo adding local file
 git add VERSION
