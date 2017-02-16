@@ -110,11 +110,18 @@ def ssh_block(nlist, start, end, section, template, defaults):
         print("Host %s %s" % (hostname,alias))
         print(" hostname %s" % hostname)
 
-        # delete all keys from templ that are set in host
+        # delete all keys from templ and defaults that are set in host
         # this effect is used to overwrite variables from templ
         # in host
         for key in section:
             templ = delkey_if_exists(templ, key)
+            defaults = delkey_if_exists(defaults, key)
+
+        # also delete all keys from default block that occours in
+        # template
+        for key in templ:
+            defaults = delkey_if_exists(defaults, key)
+
 
         section = delkey_if_exists(section, "template")
         section = delkey_if_exists(section, "hostname")
