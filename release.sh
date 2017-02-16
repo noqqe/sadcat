@@ -1,22 +1,25 @@
 #!/usr/bin/env bash
 set -e
 
+# conf
+VERFILE=setup.py
+
 if [[ $1 != "major" ]] && [[ $1 != "minor" ]] && [[ $1 != "patch" ]]; then
   echo wrong usage. use major/minor/patch as first argument
   exit 1
 fi
 
 function get_cur_vers {
-  grep '^version = "' setup.py | awk -F\" '{print $2}'
+  grep '^version = "' $VERFILE | awk -F\" '{print $2}'
 }
 
 echo bump version
-bumpversion --current-version $(get_cur_vers) $1 setup.py
+bumpversion --current-version $(get_cur_vers) $1 $VERFILE
 
 v=$(get_cur_vers)
 
 echo adding local file
-git add VERSION
+git add $VERFILE
 
 echo commit
 git commit -m "Release: $v"
