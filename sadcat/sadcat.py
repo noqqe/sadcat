@@ -78,7 +78,7 @@ def delkey_if_exists(sec, key):
     """
     try:
         del sec[key]
-    except KeyError:
+    except (KeyError, TypeError):
         pass
     return sec
 
@@ -116,12 +116,6 @@ def ssh_block(nlist, start, end, section, template, defaults):
         for key in section:
             templ = delkey_if_exists(templ, key)
             defaults = delkey_if_exists(defaults, key)
-
-        # also delete all keys from default block that occours in
-        # template
-        for key in templ:
-            defaults = delkey_if_exists(defaults, key)
-
 
         section = delkey_if_exists(section, "template")
         section = delkey_if_exists(section, "hostname")
@@ -186,6 +180,13 @@ def generate_hosts(config):
 
     hosts = config["hosts"]
 
+    try:
+        defaults = config["templates"]["default"]
+    except KeyError:
+        defaults = None
+
+    print('#### DEFAULTS', defaults)
+
     for hostgroup in hosts:
 
         # new dict for this host section
@@ -203,10 +204,7 @@ def generate_hosts(config):
         # get template referenced in this host entry
         template = get_template_for_host(section, config)
 
-        try:
-            defaults = config["templates"]["default"]
-        except KeyError:
-            defaults = None
+        print('#### DEFAULTS', defaults)
 
         # fill all gathered informations into block generator
         ssh_block(nlist, hstart, hend, section, template, defaults)
