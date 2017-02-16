@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+v0.4.7 (2017-02-16)
+-------------------
+- Release: 0.4.7. [Florian Baumann]
+- Fix. [Florian Baumann]
+- Changelog: 0.4.6. [Florian Baumann]
+
+
 v0.4.6 (2017-02-16)
 -------------------
 - Release: 0.4.6. [Florian Baumann]
