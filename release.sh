@@ -15,8 +15,6 @@ bumpversion --current-version $(get_cur_vers) $1 setup.py
 
 v=$(get_cur_vers)
 
-exit 1
-
 echo adding local file
 git add VERSION
 
