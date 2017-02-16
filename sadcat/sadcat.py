@@ -88,13 +88,13 @@ def ssh_block(nlist, start, end, section, template, defaults):
 
         # working copy of the template object
         # to be able to remove keys that are in host section
-        templ = template
+        templ = dict(template)
+        defs = dict(defaults)
 
         # build hostname and delete
         hostname = "%s%s%s" % (start, i, end)
 
         # build aliases and delete
-
         alias = ""
         try:
             if isinstance(section["alias"], list):
@@ -115,15 +115,15 @@ def ssh_block(nlist, start, end, section, template, defaults):
         # in host
         for key in section:
             templ = delkey_if_exists(templ, key)
-            defaults = delkey_if_exists(defaults, key)
+            defs = delkey_if_exists(defs, key)
 
+        # delete meta keys only used by sadcat itself
         section = delkey_if_exists(section, "template")
         section = delkey_if_exists(section, "hostname")
 
         # apply default vars
-        if defaults is not None:
-            for k, v in defaults.iteritems():
-                print(" %s %s" % (k,v))
+        for k, v in defs.iteritems():
+            print(" %s %s" % (k,v))
 
         # apply all templ vars
         for k, v in templ.iteritems():
@@ -183,7 +183,7 @@ def generate_hosts(config):
     try:
         defaults = config["templates"]["default"]
     except KeyError:
-        defaults = None
+        defaults = {}
 
     for hostgroup in hosts:
 
