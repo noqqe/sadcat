@@ -29,14 +29,14 @@ install & usage
 
 as usual.
 
-::
+.. code:: bash
 
     pip install sadcat
     sadcat ~/.ssh/sadcat.toml
 
 Personally i use two aliases
 
-::
+.. code:: bash
 
     # set refresh alias
     alias sshre="$SADCAT $HOME/.ssh/sadcat.toml > $HOME/.ssh/config"
@@ -94,7 +94,7 @@ those can be specified in ``hosts`` using a ``toml`` array if multiple
 or a string. Range numbers (if available) will be applied at the end.
 Thats just how i like it. Theres no deeper meaning.
 
-::
+.. code:: toml
 
     [hosts.hostsaliases]
     hostname = "nyc-dpzzt[5-9]"
@@ -113,7 +113,7 @@ would result in
 
 but as said, ``alias`` can also be just a string
 
-::
+.. code:: toml
 
     [hosts.hostsaliases]
     hostname = "nyc-dpzzt[5-9]"
