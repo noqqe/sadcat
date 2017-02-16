@@ -185,8 +185,6 @@ def generate_hosts(config):
     except KeyError:
         defaults = None
 
-    print('#### DEFAULTS', defaults)
-
     for hostgroup in hosts:
 
         # new dict for this host section
@@ -204,7 +202,6 @@ def generate_hosts(config):
         # get template referenced in this host entry
         template = get_template_for_host(section, config)
 
-        print('#### DEFAULTS', defaults)
 
         # fill all gathered informations into block generator
         ssh_block(nlist, hstart, hend, section, template, defaults)
