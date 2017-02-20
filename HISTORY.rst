@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+v0.4.8 (2017-02-20)
+-------------------
+- Release: 0.4.8. [Florian Baumann]
+- Fix template to default inheritance. [Florian Baumann]
+- Changelog: 0.4.7. [Florian Baumann]
+
+
 v0.4.7 (2017-02-16)
 -------------------
 - Release: 0.4.7. [Florian Baumann]
