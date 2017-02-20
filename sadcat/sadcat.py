@@ -117,6 +117,10 @@ def ssh_block(nlist, start, end, section, template, defaults):
             templ = delkey_if_exists(templ, key)
             defs = delkey_if_exists(defs, key)
 
+        # delete keys in default when in template
+        for key in templ:
+            defs = delkey_if_exists(defs, key)
+
         # delete meta keys only used by sadcat itself
         section = delkey_if_exists(section, "template")
         section = delkey_if_exists(section, "hostname")
