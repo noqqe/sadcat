@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+v0.4.9 (2017-10-10)
+-------------------
+- Release: 0.4.9. [Florian Baumann]
+- Fix in logic. [Florian Baumann]
+- Changelog: 0.4.8. [Florian Baumann]
+
+
 v0.4.8 (2017-02-20)
 -------------------
 - Release: 0.4.8. [Florian Baumann]
