@@ -54,12 +54,12 @@ def generate_range(start, end):
     # loop in range
     while c <= e:
 
-        # 01
-        if start.startswith("0"):
-            nlist.append("%02d" % c)
         # 001
-        elif start.startswith("00"):
+        if start.startswith("00"):
             nlist.append("%03d" % c)
+        # 01
+        elif start.startswith("0"):
+            nlist.append("%02d" % c)
         # 1
         else:
             nlist.append("%01d" % c)
