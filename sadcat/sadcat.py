@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os
 import sys
@@ -126,15 +126,15 @@ def ssh_block(nlist, start, end, section, template, defaults):
         section = delkey_if_exists(section, "hostname")
 
         # apply default vars
-        for k, v in defs.iteritems():
+        for k, v in defs.items():
             print(" %s %s" % (k,v))
 
         # apply all templ vars
-        for k, v in templ.iteritems():
+        for k, v in templ.items():
             print(" %s %s" % (k,v))
 
         # apply all left host section wars
-        for k, v in section.iteritems():
+        for k, v in section.items():
             if not k == "alias":
                 print(" %s %s" % (k,v))
 
