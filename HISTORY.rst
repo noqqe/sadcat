@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+v3.0.0 (2019-10-10)
+-------------------
+- Release: 3.0.0. [Baumann]
+- Release fix. [Baumann]
+- Changelog: 2.0.0. [Baumann]
+
+
 v2.0.0 (2019-10-10)
 -------------------
 - Release: 2.0.0. [Baumann]
