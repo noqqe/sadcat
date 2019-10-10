@@ -38,5 +38,5 @@ echo pushing..
 git push --tags origin master
 
 echo release on pypi
-python setup.py sdist upload -r pypi
+python3 setup.py sdist upload -r pypi
 
