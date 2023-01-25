@@ -58,7 +58,7 @@ def generate_range(start, end):
         if start.startswith("00"):
             nlist.append("%03d" % c)
         # 01
-        elif start.startswith("0"):
+        elif start.startswith("0") and len(start) > 1:
             nlist.append("%02d" % c)
         # 1
         else:

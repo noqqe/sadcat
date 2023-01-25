@@ -1,2 +1,3 @@
 dist/
 sadcat.egg-info/
+.DS_Store
